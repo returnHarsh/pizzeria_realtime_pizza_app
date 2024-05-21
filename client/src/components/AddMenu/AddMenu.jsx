@@ -75,7 +75,7 @@ function AddMenu() {
 
     return (
         <Flex>
-            <Button size={{base : "sm" , lg : "md"}} _hover={{ bg: colors.primary, color: "white" }} bg={"white"} onClick={onOpen}> Add </Button>
+            <Button fontWeight={500} ml={"-10px"} fontSize={"15px"} size={{base : "sm" , lg : "md"}} _hover={{ bg: colors.primary, color: "white" }} bg={"white"} onClick={onOpen}> Add </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

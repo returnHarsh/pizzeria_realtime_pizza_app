@@ -11,6 +11,7 @@ import { useToast } from '@chakra-ui/react'
                 status,
                 duration : 3000,
                 isClosable : true,
+                position :"top-right"
             })
         },[toast])
         return showToast

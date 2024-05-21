@@ -12,6 +12,7 @@ import {
 import { UserContext } from '../../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import useShowtoast from '../../hooks/UseShowToast';
 
 function Register() {
 
@@ -20,6 +21,7 @@ function Register() {
     const passwordRef = useRef();
     const addressRef = useRef();
     const nameRef = useRef();
+    const showToast = useShowtoast();
 
     const [showPassword , setShowPassword] = useState(false);
 
@@ -39,6 +41,12 @@ function Register() {
         const name = nameRef.current.value;
         const address = addressRef.current.value;
         const phone = sliderValue;
+
+        if(!email || !password || !name || !address || !phone){
+          showToast("error" , "all fields are required " , "error");
+          return;
+        }
+
 
         const res = await axios({
           method : "post",
@@ -60,7 +68,7 @@ function Register() {
   return (
     <Flex  justifyContent={"center"} alignItems={"center"} width={"100vw"} h={"85vh"}>
 
-    <Flex  padding={"10px"} borderRadius={"8px"} flexDirection={"column"} gap={"10px"} width={"35%"} >
+    <Flex border={"1px solid gray"} bg={"gray.100"}  padding={"18px"} borderRadius={"8px"} flexDirection={"column"} gap={"10px"} width={{base : "90%" , md:"35%"}} >
 
         <Flex justifyContent={"center"} alignItems={"center"}>
             <Heading> Register </Heading>
@@ -68,27 +76,27 @@ function Register() {
 
         <Flex flexDirection={"column"} gap={"10px"}>
        <Flex gap={"10px"}>
-       <Input ref={emailRef} bg={"gray.100"} type='text' placeholder='enter email' />
-        <Input ref={nameRef} bg={"gray.100"} type='text' placeholder='enter name' />
+       <Input  required ref={emailRef} bg={"white"} border={"1px solid"} borderColor={"gray.400"} padding={"20px"} type='text' placeholder='enter email' />
+        <Input  required ref={nameRef} bg={"white"} border={"1px solid"} borderColor={"gray.400"} padding={"20px"} type='text' placeholder='enter name' />
        </Flex>
 
        {/* range slider */}
         <Flex gap={"10px"} flexDirection={"column"}>
-            <Input bg={"gray.100"} value={sliderValue}  placeholder='phone number' />
+            <Input  required bg={"white"} border={"1px solid"} borderColor={"gray.400"} padding={"20px"} value={sliderValue}  placeholder='phone number' />
         <Slider onChange={sliderHandler} aria-label='slider-ex-1' min={0} max={9999999999} defaultValue={0}>
-  <SliderTrack height={"10px"}>
+  <SliderTrack bg={"white"} height={"10px"}>
     <SliderFilledTrack bgColor={"blue.500"} />
   </SliderTrack>
   <SliderThumb />
 </Slider>
         </Flex>
 
-        <Input ref={addressRef} bg={"gray.100"} type='text' placeholder='enter address' />
+        <Input  required ref={addressRef} bg={"white"} border={"1px solid"} borderColor={"gray.400"} padding={"20px"} type='text' placeholder='enter address' />
         {/* <Input ref={passwordRef} bg={"white"} type='password' placeholder='enter password' /> */}
 
         <InputGroup>
-        <Input
-        bg={"gray.100"}
+        <Input required 
+        bg={"white"} border={"1px solid"} borderColor={"gray.400"} padding={"20px"}
           pr="4.5rem"
           type={showPassword ? 'text' : 'password'}
           placeholder="Enter your password"

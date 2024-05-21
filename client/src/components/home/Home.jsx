@@ -2,6 +2,7 @@ import { Flex , Heading, Text , Button , Image } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import colors from '../../colors'
 import Menus from '../ShowMenu/Menus';
+import {motion} from "framer-motion";
 
 function Home() {
 
@@ -38,7 +39,7 @@ function Home() {
             </Flex>
 
             <Flex    h={"100%"} alignItems={"center"}   flex={1} width={"100%"}  justifyContent={{base : "center" , lg : "flex-end"}}>
-                <Image   transition={"0.4s ease-in-out"}  height={size}  width={"auto"} maxWidth={{base : "60%" , lg  :"100%"}}  src='./img/hero-pizza.png' alt='home-logo' />
+                <Image  transition={"0.4s ease-in-out"}  height={size}  width={"auto"} maxWidth={{base : "60%" , lg  :"100%"}}  src='./img/hero-pizza.png' alt='home-logo' />
             </Flex>
         </Flex>
         

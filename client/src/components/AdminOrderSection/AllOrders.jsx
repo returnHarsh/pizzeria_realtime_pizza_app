@@ -36,7 +36,7 @@ function AllOrders() {
     }
 
   return (
-    <Flex width={"100%"} justifyContent={"center"} alignItems={"center"}>
+    <Flex  width={"100%"} justifyContent={"center"} alignItems={"center"}>
 
         <Flex overflow={"auto"}  justifyContent={"center"}  width={"90%"}>
 

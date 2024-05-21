@@ -59,7 +59,7 @@ function Items({ item, setMenuItems, menuItems }) {
     }
 
     return (
-        <Flex  maxWidth={"400px"} padding={"10px"} gap={"10px"} bg={"gray.100"} borderRadius={"8px"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+        <Flex shadow={"xl"} border={"1px solid"} borderColor={"gray.400"}  maxWidth={"400px"} padding={"10px"} gap={"10px"} borderRadius={"8px"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
 
             {/* image portion */}
 
@@ -67,17 +67,17 @@ function Items({ item, setMenuItems, menuItems }) {
                 <AiOutlineDelete onClick={deleteMenuItemHandler} size={"25px"} cursor={"pointer"} />
             </Flex>
 
-            <Flex  flex={1} >
+            <Flex width={"100%"} justifyContent={"center"} borderColor={"gray.400"} alignItems={"center"} borderRadius={"md"}  flex={1} >
                 <Image transition={"0.25s ease-in-out"} height={`${size}%`} width={"auto"} borderRadius={"10px"} src={item.image} maxHeight={"200px"} />
             </Flex>
 
 
             {/* information portion */}
 
-            <Flex gap={"10px"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"} width={"100%"}>
+            <Flex  gap={"10px"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"} width={"100%"}>
 
                 <Flex justifyContent={"center"} alignItems={"center"}>
-                    <Text> {item.name} </Text>
+                    <Text fontWeight={500} color={"gray.600"} fontSize={"20px"} > {item.name} </Text>
                 </Flex>
 
                 <Select borderRadius={"8px"} onChange={sizeChangeHandler} width={"90%"} bg={"white"}>
@@ -86,9 +86,9 @@ function Items({ item, setMenuItems, menuItems }) {
                     <option value="100">large</option>
                 </Select>
 
-                <Flex width={"80%"} justifyContent={"space-around"} alignItems={"center"}>
+                <Flex width={"80%"} justifyContent={"space-between"} alignItems={"center"}>
                     <Button _active={{transform : "scale(0.9)"}} onClick={addToCartHandler} _hover={{ bg: "gray.500" }} borderRadius={"8px"} bg={colors.primary} color={"white"}> Add to cart </Button>
-                    <Text> ₹{item.price} </Text>
+                    <Text fontWeight={"bold"} color={"gray.600"}> ₹{item.price} </Text>
                 </Flex>
 
             </Flex>

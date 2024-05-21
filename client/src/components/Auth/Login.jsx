@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import useShowtoast from '../../hooks/UseShowToast';
 
 function Login() {
 
@@ -12,6 +13,7 @@ function Login() {
     const passwordRef = useRef();
     const navigate = useNavigate();
     const {setUser} = useContext(UserContext);
+    const showToast = useShowtoast();
 
     const[showPassword , setShowPassword] = useState(false);
 
@@ -23,6 +25,11 @@ function Login() {
     const loginHandler = async()=>{
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
+
+        if(!email || !password){
+          showToast("error" , "all fields are required" ,"error");
+          return;
+        }
 
         try{
             const res = await axios({
@@ -50,25 +57,25 @@ function Login() {
   return (
     <Flex  justifyContent={"center"} alignItems={"center"} width={"100vw"} h={"85vh"}>
 
-        <Flex  padding={"10px"} borderRadius={"8px"} flexDirection={"column"} gap={"15px"} width={"25%"} >
+        <Flex shadow={"md"} padding={"18px"} borderRadius={"8px"} flexDirection={"column"} gap={"15px"} width={{base : "80%" , md : "25%"}} >
 
             <Flex justifyContent={"center"} alignItems={"center"}>
                 <Heading> Login </Heading>
             </Flex>
 
             <Flex flexDirection={"column"} gap={"20px"}>
-            <Input  ref={emailRef} bg={"gray.100"} type='text' placeholder='enter email' />
+            <Input border={"1px solid"} borderColor={"gray.300"} ref={emailRef} bg={"white"} padding={"20px"} type='text' placeholder='enter email' />
 
             <InputGroup>
-        <Input 
-        bg={"gray.100"}
+        <Input border={"1px solid"} borderColor={"gray.300"}
+        bg={"white"} padding={"20px"}
           pr="4.5rem"
           type={showPassword ? 'text' : 'password'}
           placeholder="Enter your password"
           ref={passwordRef}
         />
         <InputRightElement width="4.5rem">
-          <Button onClick={togglePassword} h="1.75rem" size="sm">
+          <Button onClick={togglePassword} mt={"2px"} h="1.75rem" size="sm">
             {showPassword ? <ViewOffIcon /> : <ViewIcon />}
           </Button>
         </InputRightElement>
